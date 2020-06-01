@@ -18,7 +18,6 @@ public class TestPatientHistory {
 	@Before
 	public void testPatientHistory() {
 		this.pHistory = new PatientHistory();
-//		this.allergies = new ArrayList<Allergey>();
 	}
 	
 	// @Before
@@ -42,17 +41,19 @@ public class TestPatientHistory {
 
 	// @Before
 	// Initialize local allergies list
-//	@Before
-//	public void initializeAllergies() {
-//		String[] names = {"Pollen", "Peanuts", "Alcohol", "Penicillan", "Rubber" };
-//		Allergey a;
-//		int i = 0;
-//		while(i < names.length) {
-//			a = new Allergey(names[i]);
-//			this.allergies.add(a);
-//			i++;
-//		}
-//	}
+	@Before
+	public void initializeAllergies() {
+		this.allergies = new ArrayList<Allergey>();
+		
+		String[] names = {"Pollen", "Peanuts", "Alcohol", "Penicillan", "Rubber" };
+		Allergey a;
+		int i = 0;
+		while(i < names.length) {
+			a = new Allergey(names[i]);
+			this.allergies.add(a);
+			i++;
+		}
+	}
 	
 	//@Before
 	// Initialize local medication list
@@ -78,42 +79,42 @@ public class TestPatientHistory {
 	
 	// @Test
 	// Test adding treatments to patient history
-//	@Test
-//	public void testAddTreatment() {
-//		// Copy local treatment list to expectedValue 
-//		List<Treatment> expectedValue = this.treatments;
-//
-//		// add treatments to patientHistory treatment list from the local treatment list
-//		for(int i = 0; i < expectedValue.size(); i++) {
-//			this.pHistory.addTreatment(expectedValue.get(i));
-//		}
-//		
-//		// // Copy patient History treatment list to actual value
-//		List<Treatment> actualValue = this.pHistory.getAllTreatments();
-//		
-//		// Test expected list of treatments to those in the pHistory treatment list(actualValue)
-//		assertEquals(expectedValue, actualValue);
-//		
-//	}
-//
+	@Test
+	public void testAddTreatment() {
+		// Copy local treatment list to expectedValue 
+		List<Treatment> expectedValue = this.treatments;
+
+		// add treatments to patientHistory treatment list from the local treatment list
+		for(int i = 0; i < expectedValue.size(); i++) {
+			this.pHistory.addTreatment(expectedValue.get(i));
+		}
+		
+		// // Copy patient History treatment list to actual value
+		List<Treatment> actualValue = this.pHistory.getAllTreatments();
+		
+		// Test expected list of treatments to those in the pHistory treatment list(actualValue)
+		assertEquals(expectedValue, actualValue);
+		
+	}
+
 //	// @Test
 	// Add allergy
-//	@Test
-//	public void testAddAllergy() {
-//		// Copy local allergey list to expectedValue 
-//		List<Allergey> expectedValue = this.allergies;
-//		
-//		// add allergies list to patient history allergies list 
-//		for(int i = 0; i < expectedValue.size(); i++) {
-//			this.pHistory.addAllergy(expectedValue.get(i));
-//		}
-//		
-//		// Copy patient history allergey list to actual value
-//		List<Allergey> actualValue = this.pHistory.getAlergies();
-//		
-//		// Test expected list of allergies to those in patient history allergy list(actualValue)
-//		assertEquals(expectedValue, actualValue);
-//	}
+	@Test
+	public void testAddAllergy() {
+		// Copy local allergey list to expectedValue 
+		List<Allergey> expectedValue = this.allergies;
+		
+		// add allergies list to patient history allergies list 
+		for(int i = 0; i < expectedValue.size(); i++) {
+			this.pHistory.addAllergy(expectedValue.get(i));
+		}
+		
+		// Copy patient history allergey list to actual value
+		List<Allergey> actualValue = this.pHistory.getAlergies();
+		
+		// Test expected list of allergies to those in patient history allergy list(actualValue)
+		assertEquals(expectedValue, actualValue);
+	}
 
 	// @Test
 	// Add medication
@@ -131,29 +132,45 @@ public class TestPatientHistory {
 		List<Medication> actualValue = this.pHistory.getAllMedications();
 		
 		// Test expected list of allergies to those in patient history allergy list(actualValue)
-		assertEquals(expectedValue, actualValue.size());
+		assertEquals(expectedValue, actualValue);
 	}
-//
-//	@Test
-//	public void testGetAlergies() {
-//		List<Allergey> expectedValue = this.allergies;
-//		// add allergies list to patient history allergies list 
-//		for(int i = 0; i < expectedValue.size(); i++) {
-//			this.pHistory.addAllergy(expectedValue.get(i));
-//		}
-//		List<Allergey> actualValue = this.pHistory.getAlergies();
-//		
-//		assertEquals(expectedValue, actualValue);
-//	}
 
-//	@Test
-//	public void testGetAllTreatments() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testGetAllMedications() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testGetAlergies() {
+		List<Allergey> expectedValue = this.allergies;
+		// add allergies list to patient history allergies list 
+		for(int i = 0; i < expectedValue.size(); i++) {
+			this.pHistory.addAllergy(expectedValue.get(i));
+		}
+		List<Allergey> actualValue = this.pHistory.getAlergies();
+		
+		assertEquals(expectedValue, actualValue);
+	}
+
+	@Test
+	public void testGetAllTreatments() {
+		List<Treatment> expectedValue = this.treatments;
+		//add treatment list to patient history treatment list
+		for(int i = 0; i < expectedValue.size(); i++) {
+			this.pHistory.addTreatment(expectedValue.get(i));
+		}
+		
+		List<Treatment> actualValue = this.pHistory.getAllTreatments();
+		
+		assertEquals(expectedValue, actualValue);
+		
+	}
+
+	@Test
+	public void testGetAllMedications() {
+		List<Medication> expectedValue = this.medications;
+		//add medication list to patient history medication list
+		for(int i = 0; i < expectedValue.size(); i++) {
+			this.pHistory.addMedication(expectedValue.get(i));
+		}
+		
+		List<Medication> actualValue = this.pHistory.getAllMedications();
+		assertEquals(expectedValue, actualValue);
+	}
 
 }
