@@ -52,11 +52,17 @@ public class MedicalRecordService {
 	}
 	
 	public List<Patient> getPatientsWithAllergies(String allergyName){
+		List<Patient> tempList = new ArrayList<Patient>();
 		for(Patient patient : getAllPatients()){
-			if(getMedicalRecord(patient.getId()).getHistory().getAlergies().stream().filter(allergy -> allergy.getName().equals(allergyName)).findFirst().get() != null){
-				return Collections.singletonList(patient);
+			if(getMedicalRecord(patient.getId()).getHistory().getAlergies().stream().anyMatch(allergy -> allergy.getName().equals(allergyName))){
+				tempList.add(patient);
+//				return Collections.singletonList(patient);
+				
 			}
 		}
-		return Collections.emptyList();
+		if(!tempList.isEmpty())
+			return tempList;
+		else
+			return Collections.emptyList();
 	}
 }
