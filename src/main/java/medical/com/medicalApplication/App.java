@@ -7,7 +7,7 @@ import java.util.Scanner;
 import medical.com.medicalApplication.model.Employee;
 import medical.com.medicalApplication.prompts.MedicalRecordPrompt;
 import medical.com.medicalApplication.services.DoctorService;
-import medical.com.medicalApplication.services.MedicalRescordService;
+import medical.com.medicalApplication.services.MedicalRecordService;
 import medical.com.medicalApplication.util.MenuUtil;
 import medical.com.medicalApplication.util.Pair;
 
@@ -42,14 +42,14 @@ public class App {
 		if (loginSuccess) {
 			MedicalRecordPrompt medicalRecordPrompt = new MedicalRecordPrompt();
 			int input = -1;
-			System.out.println("Welcome to Mercy Hospitol System");
+			System.out.println("Welcome to Mercy Hospital System"); // BUG HERE
 			while (input != 0) {
 				mainMenu.stream().forEach(System.out::println);
 				input = scanner.nextInt();
 
 				switch (input) {
 				case 1:
-					MedicalRescordService.getReference().getAllPatients().forEach(System.out::println);
+					MedicalRecordService.getReference().getAllPatients().forEach(System.out::println);
 					break;
 				case 2:
 					DoctorService.getReference().getAllDoctors().forEach(System.out::println);
@@ -82,15 +82,15 @@ public class App {
 	private static void addPerson(boolean addDoctor, Scanner scanner) {
 		int input = -1;
 		String person = addDoctor ? "Doctor" : "Patient";
+		boolean personAdded;
 
 		while (input != 0) {
 			Pair response = MenuUtil.createTwoItemMenu(scanner, "Enter Name:", "Enter ID:");
-			boolean personAdded = false;
-
+			
 			if (addDoctor) {
 				personAdded = DoctorService.getReference().addDoctor(response.getOne(), response.getTwo());
 			} else {
-				personAdded = MedicalRescordService.getReference().addPatient(response.getOne(), response.getTwo());
+				personAdded = MedicalRecordService.getReference().addPatient(response.getOne(), response.getTwo());
 			}
 
 			if (personAdded) {

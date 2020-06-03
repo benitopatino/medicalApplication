@@ -13,16 +13,16 @@ import medical.com.medicalApplication.model.Patient;
  * In addition, it stores data in memory only using Lists
  *
  */
-public class MedicalRescordService {
-	private static MedicalRescordService reference = new MedicalRescordService();
+public class MedicalRecordService {
+	private static MedicalRecordService reference = new MedicalRecordService();
 	private List<Patient> patients;
 	private List<MedicalRecord> medicalRecords;
 
-	public static MedicalRescordService getReference() {
+	public static MedicalRecordService getReference() {
 		return reference;
 	}
 
-	MedicalRescordService() {
+	MedicalRecordService() {
 		this.patients = new ArrayList<Patient>();
 		this.medicalRecords = new ArrayList<MedicalRecord>();
 	}
@@ -39,8 +39,7 @@ public class MedicalRescordService {
 	}
 	
 	public MedicalRecord getMedicalRecord(String patientId) {
-		return medicalRecords.stream()
-				.filter(medicalRecord -> medicalRecord.getPatient().getId().equals(patientId)).findFirst().get();
+		return medicalRecords.stream().filter(medicalRecord -> medicalRecord.getPatient().getId().equals(patientId)).findFirst().get();
 	}
 
 	public Patient getPatient(String patientId) {

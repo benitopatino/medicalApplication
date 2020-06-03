@@ -28,8 +28,7 @@ public class DoctorService {
 	}
 	
 	public boolean addDoctor(String name, String id){
-		String tempId = id; // BUG 1: String(id) - was making different tempId
-		boolean createDoctor = !doctors.stream().anyMatch(doctor -> doctor.getId() == tempId);
+		boolean createDoctor = !doctors.stream().anyMatch(doctor -> doctor.getId().equals(id));		
 		if (createDoctor) {
 			doctors.add(new Doctor(name, id));
 		}

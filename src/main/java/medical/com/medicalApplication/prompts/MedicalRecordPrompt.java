@@ -9,7 +9,7 @@ import medical.com.medicalApplication.model.MedicalRecord;
 import medical.com.medicalApplication.model.Medication;
 import medical.com.medicalApplication.model.Patient;
 import medical.com.medicalApplication.model.Treatment;
-import medical.com.medicalApplication.services.MedicalRescordService;
+import medical.com.medicalApplication.services.MedicalRecordService;
 /**
  * 
  * This class creates the prompts for the medical application
@@ -23,7 +23,7 @@ public class MedicalRecordPrompt {
 		int input = -1;
 		System.out.println("Enter Patient ID:");
 		String patientId = scanner.next();
-		Patient patient = MedicalRescordService.getReference().getPatient(patientId);
+		Patient patient = MedicalRecordService.getReference().getPatient(patientId);
 		
 		if (patient != null) {
 			while (input != 0) {
@@ -39,18 +39,18 @@ public class MedicalRecordPrompt {
 					addMedication(scanner, patient.getId());
 					break;
 				case 3:
-					MedicalRescordService.getReference().getMedicalRecord(patientId).getHistory().getAllTreatments()
+					MedicalRecordService.getReference().getMedicalRecord(patientId).getHistory().getAllTreatments()
 							.forEach(System.out::println);
 					break;
 				case 4:
-					MedicalRescordService.getReference().getMedicalRecord(patientId).getHistory().getAllMedications()
+					MedicalRecordService.getReference().getMedicalRecord(patientId).getHistory().getAllMedications()
 							.forEach(System.out::println);
 					break;
 				case 5:
 					addAllergy(scanner, patient.getId());
 					break;
 				case 6:
-					MedicalRescordService.getReference().getMedicalRecord(patientId).getHistory().getAlergies()
+					MedicalRecordService.getReference().getMedicalRecord(patientId).getHistory().getAlergies()
 							.forEach(System.out::println);
 					break;
 				case 0:
@@ -72,7 +72,7 @@ public class MedicalRecordPrompt {
 			String allergyName = scanner.next();
 
 			Allergey allergy = new Allergey(allergyName);
-			MedicalRecord medicalRecord = MedicalRescordService.getReference().getMedicalRecord(patientId);
+			MedicalRecord medicalRecord = MedicalRecordService.getReference().getMedicalRecord(patientId);
 
 			if (medicalRecord != null) {
 				medicalRecord.getHistory().addAllergy(allergy);
@@ -101,7 +101,7 @@ public class MedicalRecordPrompt {
 			String description = scanner.next();
 
 			Treatment treatment = new Treatment(treatmentDate, diagnose, description);
-			MedicalRecord medicalRecord = MedicalRescordService.getReference().getMedicalRecord(patientId);
+			MedicalRecord medicalRecord = MedicalRecordService.getReference().getMedicalRecord(patientId);
 
 			if (medicalRecord != null) {
 				medicalRecord.getHistory().addTreatment(treatment);
@@ -118,7 +118,7 @@ public class MedicalRecordPrompt {
 	public List<Patient> findAllPatientsWithAllergy(Scanner scanner){
 		System.out.println("Enter Allergy:");
 		String allergy = scanner.next();
-		return MedicalRescordService.getReference().getPatientsWithAllergies(allergy);
+		return MedicalRecordService.getReference().getPatientsWithAllergies(allergy);
 	}
 	public void addMedication(Scanner scanner, String patientId) {
 		int input = -1;
@@ -134,7 +134,7 @@ public class MedicalRecordPrompt {
 			String dose = scanner.next();
 
 			Medication medication = new Medication(name, startDate, endDate, dose);
-			MedicalRecord medicalRecord = MedicalRescordService.getReference().getMedicalRecord(patientId);
+			MedicalRecord medicalRecord = MedicalRecordService.getReference().getMedicalRecord(patientId);
 
 			if (medicalRecord != null) {
 				medicalRecord.getHistory().addMedication(medication);

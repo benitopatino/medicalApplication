@@ -41,7 +41,6 @@ public class TestDoctorService {
 	public void testAddDoctor() {
 		boolean expectedValue = true;
 		boolean actualValue = DoctorService.getReference().addDoctor("Frank", "88990");
-		System.out.println(DoctorService.getReference().getAllDoctors().size());
 		assertEquals(expectedValue, actualValue);
 		
 	}
