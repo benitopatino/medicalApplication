@@ -104,7 +104,7 @@ public class TestMedicalRecordService {
 		MedicalRecordService.getReference().getMedicalRecord("123456789").getHistory().addAllergy(new Allergey("Fish"));
 		MedicalRecordService.getReference().getMedicalRecord("6551").getHistory().addAllergy(new Allergey("Gluten"));
 		
-		int expectedValue = 5;
+		int expectedValue = 8;
 		int actualValue = MedicalRecordService.getReference().getAllPatients().size();
 		
 		assertEquals(expectedValue, actualValue);

@@ -29,7 +29,7 @@ public class TestDoctorService {
 
 	@Test
 	public void testGetAllDoctors() {
-		int expectedValue = 5;
+		int expectedValue = 4;
 		int actualValue = DoctorService.getReference().getAllDoctors().size();
 		
 		assertEquals(expectedValue, actualValue);
